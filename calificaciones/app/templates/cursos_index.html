@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block content %}
+<a href="{{url_for('cursos_create')}}">Crear un curso &rarr;</a>
+<h1>Cursos del profesor</h1>
+
+{% if cursos|length == 0 %}
+<p>Aun no hay cursos.</p>
+{% endif %}
+
+<ul id="cursos-wrapper">
+	{% for curso in cursos %}
+	<li>
+		<strong>{{curso.name}}</strong>
+		<br />
+		<small><a href="{{url_for('cursos_show', id=curso.id)}}">Ir a curso &rarr;</a></small>
+		<small><a href="{{ url_for('cursos_destroy', id=curso.id) }}">Borrar curso</a></small>
+	</li>
+	{% endfor %}
+</ul>
+{% endblock %}
